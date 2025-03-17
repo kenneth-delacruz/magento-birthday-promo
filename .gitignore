@@ -1,0 +1,7 @@
+.DS_Store
+src/**
+!src/app/
+!src/app/code/
+!src/app/code/**
+!src/app/design/
+!src/app/design/**
