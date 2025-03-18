@@ -3,5 +3,4 @@
     <type name="Magento\SalesRule\Model\Rule\Condition\Combine">
         <plugin name="birthday_promo_plugin" type="Kdc\BirthdayPromo\Plugin\SalesRuleCondition" />
     </type>
-</type>
 </config>
