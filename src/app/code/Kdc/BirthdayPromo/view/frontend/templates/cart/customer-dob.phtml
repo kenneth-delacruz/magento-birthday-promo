@@ -1,11 +1,16 @@
 <?php
+
 /** @var \Kdc\BirthdayPromo\ViewModel\CustomerDob $viewModel */
 $viewModel = $block->getData('view_model');
+
+/** @var \Kdc\BirthdayPromo\Helper\BirthdayMessage $birthdayMessageHelper */
+$birthdayHelper = \Magento\Framework\App\ObjectManager::getInstance()->get(\Kdc\BirthdayPromo\Helper\BirthdayMessage::class);
+
 $dobMessage = $viewModel ? $viewModel->getCustomerDob() : null;
 ?>
 
 <?php if ($dobMessage): ?>
     <p class="dob-message">
-        🎉 <?= __('Happy Birthday! Enjoy a fantastic <b>%1</b> discount!', $dobMessage) ?> 🎈🎊
+        <?= $birthdayHelper->getBirthdayMessage($dobMessage) ?>
     </p>
 <?php endif; ?>

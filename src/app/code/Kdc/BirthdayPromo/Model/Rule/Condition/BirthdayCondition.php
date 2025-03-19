@@ -5,7 +5,6 @@ use Magento\Rule\Model\Condition\AbstractCondition;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Rule\Model\Condition\Context;
-use Psr\Log\LoggerInterface;
 
 class BirthdayCondition extends AbstractCondition
 {
@@ -13,7 +12,6 @@ class BirthdayCondition extends AbstractCondition
 
     public function __construct(
         Context $context,
-        private LoggerInterface $logger,
         CustomerSession $customerSession,
         array $data = []
     ) {
@@ -52,11 +50,6 @@ class BirthdayCondition extends AbstractCondition
      */
     public function validate(AbstractModel $model)
     {
-        // Ensure the condition is set before applying logic
-        if ($this->getAttribute() !== 'birthday_promo') {
-            return false;
-        }
-    
         $customer = $this->customerSession->getCustomer();
         if (!$customer || !$customer->getId()) {
             return false; // Ensure a customer is logged in

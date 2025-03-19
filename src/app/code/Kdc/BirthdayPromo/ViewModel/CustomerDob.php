@@ -43,7 +43,7 @@ class CustomerDob implements ArgumentInterface
         $ruleCollection = $this->ruleCollectionFactory->create();
         $ruleCollection->addFieldToFilter('name', 'Birthday 50% Off')->setPageSize(1);
 
-        $discountAmount = 0; // Default
+        $discountAmount = 50; // Default
         $simpleAction = 'by_percent'; // Default action type
 
         if ($ruleCollection->getSize() > 0) {
