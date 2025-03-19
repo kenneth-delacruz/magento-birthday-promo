@@ -5,3 +5,4 @@ src/**
 !src/app/code/**
 !src/app/design/
 !src/app/design/**
+!composer.json
