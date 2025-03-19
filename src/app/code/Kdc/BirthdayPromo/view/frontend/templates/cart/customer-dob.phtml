@@ -1,0 +1,11 @@
+<?php
+/** @var \Kdc\BirthdayPromo\ViewModel\CustomerDob $viewModel */
+$viewModel = $block->getData('view_model');
+$dobMessage = $viewModel ? $viewModel->getCustomerDob() : null;
+?>
+
+<?php if ($dobMessage): ?>
+    <p class="dob-message">
+        🎉 <?= __('Happy Birthday! Enjoy a fantastic <b>%1</b> discount!', $dobMessage) ?> 🎈🎊
+    </p>
+<?php endif; ?>
