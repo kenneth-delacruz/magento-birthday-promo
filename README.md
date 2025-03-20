@@ -43,7 +43,7 @@ curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/on
 
 Replace the default `app/code` directory with the module's source code:
 ```sh
-cp -R ~/Documents/Repositories/magento-birthday-promo/src/app/code src/app/
+cp -R ~/Sites/magento-birthday-promo/src/app/code src/app/
 ```
 
 ### 5. Start the Magento Environment
