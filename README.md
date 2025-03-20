@@ -19,7 +19,7 @@ Ensure you have the following before proceeding:
 
 Navigate to your development directory and clone the repository:
 ```sh
-cd $/Sites
+cd Sites
 git clone https://github.com/kenneth-delacruz/magento-birthday-promo.git
 ```
 
