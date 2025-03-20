@@ -7,6 +7,7 @@ namespace Kdc\BirthdayPromo\ViewModel;
 use Magento\Customer\Model\Session;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory as RuleCollectionFactory;
+use DateTime;
 
 class CustomerDob implements ArgumentInterface
 {
@@ -44,8 +45,8 @@ class CustomerDob implements ArgumentInterface
             $dob = $this->customerSession->getCustomer()->getDob();
             
             if ($dob) {
-                $dobDate = new \DateTime($dob);
-                $today = new \DateTime();
+                $dobDate = new DateTime($dob);
+                $today = new DateTime();
 
                 if ($dobDate->format('m-d') === $today->format('m-d')) {
                     $discountDetails = $this->getBirthdayDiscountDetails();

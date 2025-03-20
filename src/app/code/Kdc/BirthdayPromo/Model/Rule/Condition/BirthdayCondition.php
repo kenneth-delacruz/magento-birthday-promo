@@ -8,6 +8,7 @@ use Magento\Rule\Model\Condition\AbstractCondition;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Rule\Model\Condition\Context;
+use DateTime;
 
 class BirthdayCondition extends AbstractCondition
 {
@@ -84,8 +85,8 @@ class BirthdayCondition extends AbstractCondition
             return false;
         }
     
-        $dobDate = new \DateTime($dob);
-        $currentDate = new \DateTime();
+        $dobDate = new DateTime($dob);
+        $currentDate = new DateTime();
     
         return ($dobDate->format('m-d') === $currentDate->format('m-d'));
     }
