@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kdc\BirthdayPromo\ViewModel;
 
 use Magento\Customer\Model\Session;
@@ -11,6 +13,15 @@ class CustomerDob implements ArgumentInterface
     protected $customerSession;
     protected $ruleCollectionFactory;
 
+    /**
+     * Constructor for initializing customer session and rule collection factory.
+     *
+     * Injects dependencies required for retrieving customer session data and fetching 
+     * applicable sales rules.
+     *
+     * @param \Magento\Customer\Model\Session $customerSession Manages the customer session data.
+     * @param \Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory $ruleCollectionFactory Factory for creating sales rule collections.
+     */
     public function __construct(
         Session $customerSession,
         RuleCollectionFactory $ruleCollectionFactory
@@ -19,6 +30,14 @@ class CustomerDob implements ArgumentInterface
         $this->ruleCollectionFactory = $ruleCollectionFactory;
     }
 
+    /**
+     * Checks if today is the customer's birthday and returns the discount message.
+     *
+     * This method verifies if the logged-in customer's date of birth matches today's date.
+     * If it does, it retrieves the birthday discount details and formats a discount message.
+     *
+     * @return string|null The formatted birthday discount message if applicable, otherwise null.
+     */
     public function getCustomerDob()
     {
         if ($this->customerSession->isLoggedIn()) {
@@ -35,9 +54,19 @@ class CustomerDob implements ArgumentInterface
                 }
             }
         }
-        return null; // Return null if it's not their birthday
+        return null;
     }
 
+    /**
+     * Retrieves the details of the birthday discount rule.
+     *
+     * This method fetches the sales rule named "Birthday 50% Off" to determine the discount amount 
+     * and discount type. If the rule is not found, default values (50% off by percentage) are used.
+     *
+     * @return array An associative array containing:
+     *               - 'amount' (float): The discount amount.
+     *               - 'action' (string): The discount type (e.g., 'by_percent').
+     */
     private function getBirthdayDiscountDetails()
     {
         $ruleCollection = $this->ruleCollectionFactory->create();
@@ -58,6 +87,17 @@ class CustomerDob implements ArgumentInterface
         ];
     }
 
+    /**
+     * Formats the discount message based on the discount type.
+     *
+     * This method converts the discount details into a readable message depending on 
+     * the discount action type (e.g., percentage discount, fixed discount, cart total discount, etc.).
+     *
+     * @param array $discountDetails An associative array containing:
+     *                               - 'amount' (float): The discount amount.
+     *                               - 'action' (string): The discount type (e.g., 'by_percent', 'by_fixed').
+     * @return string A formatted discount message describing the applicable discount.
+     */
     private function formatDiscountMessage($discountDetails)
     {
         switch ($discountDetails['action']) {
